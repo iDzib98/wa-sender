@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Sender</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/scripts/globalFunctions.js"></script>
+    <script type="module" src="/scripts/globalModule.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Barra de progreso, bueno, circulo de progreso -->
+        <div id="progressBar" class="card center"
+            style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div class="card-content">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <div class="row">
+            <!-- Formulario para enviar mensajes -->
+            <form id="messageForm" class="col s12 m6 l7">
+                <div class="row card-panel">
+                    <a id="btnNuevaLista" class="btn">Nueva lista</a>
+                    <a id="btnBorrarLista" class="btn red">Borrar lista actual</a>
+                    <div class="input-field col s12">
+                        <select id="lista" name="lista">
+                        </select>
+                        <label>Escoge una opcion</label>
+                    </div>
+                    <div class="input-fiel col s12">
+                        <textarea id="message" name="message" class="materialize-textarea"></textarea>
+                        <label for="message">Escribe tu mensaje</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <div class="center">
+                            <input id="btnEnviar" class="btn" type="submit" value="Enviar">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="col s12 m6 l5">
+                <div class="card-panel">
+                    <a id="btnNuevoNumero" class="btn">Agregar número</a>
+                    <span class="card-title" id="tablaHeader"></span>
+                    <div id="tabla"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="/scripts/index.js"></script>
+</body>
+
+</html>

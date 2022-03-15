@@ -1,0 +1,9 @@
+{
+  "background_color": "#1a237e",
+  "description": "Envia Mensajes por Whatsapp",
+  "display": "standalone",
+  "name": "WA Sender",
+  "short_name": "WA Sender",
+  "start_url": ".",
+  "theme_color": "#283593"
+}

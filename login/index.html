@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/android/mask-144.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>YUCLEX</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/scripts/globalFunctions.js"></script>
+</head>
+
+<body>
+    <style>
+        header,
+        main,
+        footer {
+            padding-left: 0;
+        }
+
+        .navbar-fixed nav {
+            max-width: 100%;
+        }
+    </style>
+    <header>
+        <!-- Barra de progreso, bueno, circulo de progreso -->
+        <div id="progressBar" class="card center"
+            style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div class="card-content">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper indigo darken-4">
+                    <a href="index.html" class="brand-logo center">WA Sender</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <div class="row">
+            <!-- Formulario de inicio de sesión -->
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Iniciar Sesión</span>
+                    <form id="login_form">
+                        <div id="user_field" class="input-field">
+                            <input id="user_email" type="email">
+                            <label for="user_email">E-mail:</label>
+                        </div>
+                        <!-- Campo Contraseña -->
+                        <div id="password_field" class="input-field">
+                            <input type="password" id="user_password">
+                            <label for="user_password">Contraseña:</label>
+                        </div>
+                        <div class="input-field center">
+                            <input id="btn_login" class="btn" type="submit" value="Iniciar Sesión">
+                        </div>
+                    </form>
+                    <div class="center">
+                        <button id="btnGoogle" class="waves-effect waves-light btn-small white black-text">Iniciar con
+                            Google</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="login.js"></script>
+</body>
+
+</html>
