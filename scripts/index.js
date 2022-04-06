@@ -13,26 +13,40 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 messageForm.addEventListener('submit', async (e) => {
+    mensajesEnviados = 0;
+    btnEnviar.classList.add('hide')
+    progressBar.classList.remove('hide')
     e.preventDefault();
     let mensaje = messageForm['message'].value;
     let lista = messageForm['lista'].value;
+    let media = mediaLabel.innerHTML != '' ? mediaLabel.innerHTML : null;
+    let numeroAux = 0
     console.log(lista, mensaje);
     const querySnapshot = await getDocs(collection(db, `usuarios/${correo}/listas/${lista}/numeros`));
-    querySnapshot.forEach(async (doc) => {
+    querySnapshot.forEach((doc) => {
+        numeroAux += 1;
         // doc.data() is never undefined for query doc snapshots
         let numero = doc.data().numero
-        let respuesta = await enviar_whatsapp(numero, mensaje);
-        console.log(numero, respuesta)
+        setTimeout(()=>{
+            enviar_whatsapp(numero, mensaje, media)
+        }, 5000*numeroAux)
     });
     setTimeout(()=>{
         btnEnviar.classList.remove('hide')
+        progressBar.classList.add('hide')
         M.toast({html: 'Ya puedes enviar otro mensaje'})
-    }, 5000)
+    }, 5000*numeroAux)
 })
 
 messageForm['lista'].addEventListener('change', (e) => {
     console.log(messageForm['lista'].value)
     crear_tabla_de_lista(messageForm['lista'].value)
+})
+
+messageForm['archivo'].addEventListener('change', (e) => {
+    let nombreArchivo = e.target.files[0].name;
+    mediaLabel.innerHTML = `./archivos/${nombreArchivo}`
+
 })
 
 btnNuevaLista.addEventListener('click', () => {
@@ -73,12 +87,14 @@ const llenar_options_con_listas = async () => {
 }
 
 const crear_tabla_de_lista = async (lista) => {
+    cantidadNumeros = 0;
     currentlist = lista;
     tabla.innerHTML = '';
     let clientes = [];
     const usuarios = await getDocs(collection(db, (`usuarios/${correo}/listas/${lista}/numeros`)));
     console.log(usuarios)
     usuarios.forEach(async (e) => {
+        cantidadNumeros += 1;
         let cliente = [];
         let button = document.createElement('button')
         button.dataset.id = e.id
@@ -89,7 +105,7 @@ const crear_tabla_de_lista = async (lista) => {
         console.log(e.data())
         cliente.push(button)
         cliente.push(e.data().nombre)
-        cliente.push(e.data().numero)
+        cliente.push(e.data().numero.replace(/[ ()-]/g, ''))
         clientes.push(cliente)
     })
     let grid = new gridjs.Grid({
